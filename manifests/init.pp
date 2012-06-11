@@ -33,12 +33,17 @@ class etckeeper {
             require => Package["etckeeper"];
     }
 
-    Exec { path => ["/usr/bin", "/usr/sbin"] }
+    case $operatingsystem {
+        'Debian': { $etckeeper = '/usr/sbin/etckeeper' }
+        'Ubuntu': { $etckeeper = '/usr/bin/etckeeper' }
+    }
+
 
     exec {
         "etckeeper_init":
-            command => "etckeeper init",
+            command => "${etckeeper} init",
             creates => "/etc/.git",
             require => File["/etc/etckeeper/etckeeper.conf"];
     }
+
 }
