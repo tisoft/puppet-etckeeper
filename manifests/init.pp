@@ -21,6 +21,16 @@ class etckeeper {
             ensure => present,
             content => template("etckeeper/etckeeper.conf.erb"),
             require => Package["etckeeper"];
+        "/etc/.git/config":
+            ensure  => present,
+            content => template("etckeeper/config.erb"),
+            mode    => '644',
+            require => Exec["etckeeper_init"];
+        "/etc/cron.weekly/etckeeper-garbagecolector":
+            ensure  => present,
+            source  => 'puppet:///modules/etckeeper/etckeeper-gc',
+            mode    => '755',
+            require => Package["etckeeper"];
     }
 
     Exec { path => ["/usr/bin", "/usr/sbin"] }
