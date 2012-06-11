@@ -4,7 +4,7 @@ class etckeeper {
             $highlevel_package_manager = "yum"
             $lowlevel_package_manager ="rpm"
         }
-        ubuntu: {
+        ubuntu, debian: {
             $highlevel_package_manager = "apt"
             $lowlevel_package_manager ="dpkg"
         }
