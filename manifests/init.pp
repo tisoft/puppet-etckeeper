@@ -46,4 +46,9 @@ class etckeeper {
             require => File["/etc/etckeeper/etckeeper.conf"];
     }
 
+    #Custom ignore Example
+    # etckeeper::ignore {
+    #     ['hosts.deny']:
+    # }
+
 }
