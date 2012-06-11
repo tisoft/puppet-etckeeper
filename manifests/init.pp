@@ -11,7 +11,10 @@ class etckeeper {
     default: { fail("Don't know how to handle ${operatingsystem}") }
   }
 
-  package { etckeeper: ensure => installed; }
+  if ! defined (Package["etckeeper"]) {
+       package { "etckeeper": ensure => installed; }
+  }
+
 
   file {
     "/etc/etckeeper/etckeeper.conf":
