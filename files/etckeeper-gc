@@ -1,0 +1,5 @@
+#!/bin/bash
+# git garbage collector
+cd /etc
+exec git gc
+exec git fsck --full
