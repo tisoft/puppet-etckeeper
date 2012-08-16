@@ -15,6 +15,9 @@ class etckeeper {
         package { "etckeeper": ensure => installed; }
     }
 
+    if ! defined (Package["git"]) {
+        package { "git": ensure => installed; }
+    }
 
     file {
         "/etc/etckeeper/etckeeper.conf":
