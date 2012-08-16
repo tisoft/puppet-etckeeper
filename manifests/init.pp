@@ -19,6 +19,8 @@ class etckeeper {
         package { "git": ensure => installed; }
     }
 
+    Package["etckeeper"] -> Package["git"]
+
     file {
         "/etc/etckeeper/etckeeper.conf":
             ensure => present,
